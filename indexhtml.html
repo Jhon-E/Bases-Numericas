@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor bases numéricas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form action=# method="dialog">
+        <div class = "inicio_show">
+            <label for = entrada> <h2>Número que deseas convertir:</h2></label><br />
+                <input type = "text" name = "entrada" id = "input" required>
+                <br />
+            <label for = bI><h3>Ingrese la base numérica inicial:</h3></label>
+                <br />
+                <input type = "number" name = "bI" id = "baseI" placeholder = 2 min="2" max="16">
+                <br />
+            <label for = bf><h3>Ingrese la base numérica final:</h3></label>
+                <br />
+                <input type = "number" name = "bf" id = "baseF" placeholder = 2 min="2" max="16">
+                <br />
+            <button onclick = "convertir()">Convertir</button>
+        </div>
+        <div class = "cont_resultado">
+                <h1>Resultado</h1>
+                <section id = "resultado_Cont"></section>
+        </div>
+    </form>
+</body>
+<script src="main.js"></script>
+</html>
