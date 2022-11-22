@@ -8,26 +8,76 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form action=# method="dialog">
-        <div class = "inicio_show">
-            <label for = entrada> <h2>Número que deseas convertir:</h2></label><br />
-                <input type = "text" name = "entrada" id = "input">
-                <br />
-            <label for = bI><h3>Ingrese la base numérica inicial:</h3></label>
-                <br />
-                <input type = "number" name = "bI" id = "baseI" placeholder = 2 min="2" max="16">
-                <br />
-            <label for = bf><h3>Ingrese la base numérica final:</h3></label>
-                <br />
-                <input type = "number" name = "bf" id = "baseF" placeholder = 2 min="2" max="16">
-                <br />
-            <button onclick = "convertir()">Convertir</button>
+    <section class="convertidor">
+        <form action=# method="dialog" id="conversor">
+            <div class = "inicio_show">
+                <label for = entrada> <h2>Número que deseas convertir:</h2></label><br />
+                    <input type = "text" name = "entrada" id = "input">
+                    <br />
+                <label for = bI><h3>Ingrese la base numérica inicial:</h3></label>
+                    <br />
+                    <input type = "number" name = "bI" id = "baseI" placeholder = 2 min="2" max="16">
+                    <br />
+                <label for = bf><h3>Ingrese la base numérica final:</h3></label>
+                    <br />
+                    <input type = "number" name = "bf" id = "baseF" placeholder = 2 min="2" max="16">
+                    <br />
+                <button onclick = "convertir()">Convertir</button>
+            </div>
+            <div class = "cont_resultado">
+                    <h1>Resultado</h1>
+                    <section id = "resultado_Cont"></section>
+            </div>
+        </form>
+    </section>
+    <hr>
+    <section class="calculadora">
+        <h2>Calculadora entre bases numéricas</h2>
+        <br>
+        <div class="calculadora_cont">
+            <form action=# method="dialog">
+                <label for="base"><h3>Seleccionar base</h3></label>
+                <select name="base" required id="base">
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                </select>
+                <label for="num_1"><h3>Ingrese el primer numero</h3></label>
+                <input type = "text" name = "num_1" id = "input_1">
+                <br>
+                <label for="operacion"><h3>Seleccione el tipo de operación</h3></label>
+                <select name="operacion" required id="op">
+                    <option>+</option>
+                    <option>-</option>
+                    <option>x</option>
+                    <option>÷</option>
+                </select>
+                <br>
+                <label for="num_2"><h3>Ingrese el segundo numero</h3></label>
+                <input type = "text" name = "num_2" id = "input_2">
+                <br>
+                <button onclick = "calcular()">Calcular</button>
+                <div id="resultado">
+                    <h2>Resultado:</h2><h2 id="cont_result">0</h2>
+                </div>
+            </form>
         </div>
-        <div class = "cont_resultado">
-                <h1>Resultado</h1>
-                <section id = "resultado_Cont"></section>
-        </div>
-    </form>
+    </section>
+    <footer>
+        <p>Hecho por Jhoneiker Ospino, Universidad libre - Seccional barranquilla, Lógica matemática.</p>
+    </footer>
 </body>
 <script src="main.js"></script>
 </html>

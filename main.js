@@ -35,19 +35,19 @@ function verificarBase (en, bi, bf) {
     }
 }
 
-deCualquierBasea10 = (e) => {
-
+function deCualquierBasea10 (e, bi){
+    let base_inicial = parseInt(bi)
     let input0 = e.toUpperCase().split("").reverse();
     let elem;
     convertLetraANumber(input0, elem)
-    resultadoBase10 = input0.map((x,i)=> x *= Math.pow(baseI.value,i)).reduce((acc,sum) => acc + sum);
+    resultadoBase10 = input0.map((x,i)=> x *= Math.pow(base_inicial,i)).reduce((acc,sum) => acc + sum);
     return resultadoBase10;
 }
 
-de10ACualquierBase = (entrada) => {
+function de10ACualquierBase (entrada, bf) {
 
     let e = parseInt(entrada)
-    let bF = baseF.value;
+    let bF = parseInt(bf);
     let digito;
     let resultArr = [];
     let resultadoBaseX;
@@ -130,19 +130,19 @@ function convertir() {
 
     if (baseI === 10 && verificarBase(input,baseI,baseF)) {
         
-        contResult.innerHTML = `<p>El número <span style="color:orangered;">${input}</span><sub>10</sub> es igual a <span style="color:orangered;">${de10ACualquierBase(input)}</span><sub>${baseF}</sub></p>`
+        contResult.innerHTML = `<p>El número <span style="color:orangered;">${input}</span><sub>10</sub> es igual a <span style="color:orangered;">${de10ACualquierBase(input,baseF)}</span><sub>${baseF}</sub></p>`
 
     }
     if (baseF === 10 && verificarBase(input,baseI,baseF)) {
 
-        contResult.innerHTML = `<p>El número <span style="color:orangered;">${input}</span><sub>${baseI}</sub> es igual a <span style="color:orangered;">${deCualquierBasea10(input)}</span><sub>10</sub></p>`
+        contResult.innerHTML = `<p>El número <span style="color:orangered;">${input}</span><sub>${baseI}</sub> es igual a <span style="color:orangered;">${deCualquierBasea10(input,baseI)}</span><sub>10</sub></p>`
 
 
     }
     if (verificarBase(input,baseI,baseF) && baseI !== 10 && baseF !== 10){
 
-        let b10 = deCualquierBasea10(input)
-        contResult.innerHTML = `<p>El número <span style="color:orangered;">${input}</span><sub>${baseI}</sub> es igual a <span style="color:orangered;">${de10ACualquierBase(b10)}</span><sub>${baseF}</sub></p>`
+        let b10 = deCualquierBasea10(input,baseI)
+        contResult.innerHTML = `<p>El número <span style="color:orangered;">${input}</span><sub>${baseI}</sub> es igual a <span style="color:orangered;">${de10ACualquierBase(b10,baseF)}</span><sub>${baseF}</sub></p>`
 
     }
 
@@ -150,4 +150,45 @@ function convertir() {
     document.querySelector("#baseI").value = null;
     document.querySelector("#baseF").value = null;
 
+}
+
+function calcular() {
+
+    const num1 = document.querySelector("#input_1").value;
+    const num2 = document.querySelector("#input_2").value;
+    const operacion = document.querySelector("#op").value;
+    const base = parseInt(document.querySelector("#base").value);
+    const cont_resultado = document.querySelector("#cont_result");
+
+    if (verificarBase(num1, base, 10) && verificarBase(num2, base, 10) && base != 10){
+
+        let num1_base10 = deCualquierBasea10(num1,base);
+        let num2_base10 = deCualquierBasea10(num2,base);
+        let resultado_base10;
+        let resultado;
+
+        switch(operacion){
+            case "+":
+                resultado_base10 = num1_base10 + num2_base10;
+                resultado = de10ACualquierBase(resultado_base10,base);
+                break;
+            case "-":
+                resultado_base10 = num1_base10 - num2_base10;
+                resultado = de10ACualquierBase(resultado_base10,base);
+                break;
+            case "x":
+                resultado_base10 = num1_base10 * num2_base10;
+                resultado = de10ACualquierBase(resultado_base10,base);
+                break;
+            case "÷":
+                resultado_base10 = num1_base10 / num2_base10;
+                resultado = de10ACualquierBase(resultado_base10,base);
+                break;
+            default:
+                alert("Algo ocurrió mal :(");
+        }
+        cont_resultado.innerHTML = `${resultado}`;
+        document.querySelector("#input_1").value = "";
+        document.querySelector("#input_2").value = "";
+    }
 }
