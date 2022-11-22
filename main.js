@@ -28,7 +28,7 @@ function verificarBase (en, bi, bf) {
     }
     let a = sa.find(elem => isNaN(elem))
     if (Math.max(...sa) >= bi || (bi < 2 || bf < 2) || (bi > 16 || bf > 16) || Object.is(a,NaN)) {
-        alert("Bases numéricas ingresadas no válidas, rectifique")
+        alert("Algun dato ingresado no es válido, por favor corregir.")
         return false;
     } else {
         return true;
@@ -160,7 +160,7 @@ function calcular() {
     const base = parseInt(document.querySelector("#base").value);
     const cont_resultado = document.querySelector("#cont_result");
 
-    if (verificarBase(num1, base, 10) && verificarBase(num2, base, 10) && base != 10){
+    if (verificarBase(num1, base, 10) && verificarBase(num2, base, 10)/*  && base != 10 */){
 
         let num1_base10 = deCualquierBasea10(num1,base);
         let num2_base10 = deCualquierBasea10(num2,base);
@@ -174,15 +174,15 @@ function calcular() {
                 break;
             case "-":
                 resultado_base10 = num1_base10 - num2_base10;
-                resultado = de10ACualquierBase(resultado_base10,base);
+                (resultado_base10 > 0)?resultado = de10ACualquierBase(resultado_base10,base):resultado = 0;
                 break;
             case "x":
                 resultado_base10 = num1_base10 * num2_base10;
-                resultado = de10ACualquierBase(resultado_base10,base);
+                (resultado_base10 > 0)?resultado = de10ACualquierBase(resultado_base10,base): resultado = 0;
                 break;
             case "÷":
-                resultado_base10 = num1_base10 / num2_base10;
-                resultado = de10ACualquierBase(resultado_base10,base);
+                (num2_base10 == 0)?alert("No se puede dividir entre 0"):resultado_base10 = num1_base10 / num2_base10;
+                (resultado_base10 > 0)?resultado = de10ACualquierBase(resultado_base10,base): resultado = 0;
                 break;
             default:
                 alert("Algo ocurrió mal :(");
