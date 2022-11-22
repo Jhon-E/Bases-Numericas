@@ -39,7 +39,7 @@ deCualquierBasea10 = (e) => {
 
     let input0 = e.toUpperCase().split("").reverse();
     let elem;
-    elem = convertLetraANumber(input0, elem)
+    convertLetraANumber(input0, elem)
     resultadoBase10 = input0.map((x,i)=> x *= Math.pow(baseI.value,i)).reduce((acc,sum) => acc + sum);
     return resultadoBase10;
 }
@@ -122,6 +122,12 @@ function convertir() {
     const baseF = document.querySelector("#baseF").value;
     const contResult = document.querySelector("#resultado_Cont");
 
+    if (input == 0) {
+
+        return contResult.innerHTML = `<p>El número <span style="color:orangered;">${input}</span><sub>${baseI}</sub> es igual a <span style="color:orangered;">0</span><sub>${baseF}</sub></p>`
+
+    }
+
     if (baseI === 10 && verificarBase(input,baseI,baseF)) {
         
         contResult.innerHTML = `<p>El número <span style="color:orangered;">${input}</span><sub>10</sub> es igual a <span style="color:orangered;">${de10ACualquierBase(input)}</span><sub>${baseF}</sub></p>`
@@ -140,7 +146,7 @@ function convertir() {
 
     }
 
-    document.querySelector("#input").value = "0";
+    document.querySelector("#input").value = "";
     document.querySelector("#baseI").value = null;
     document.querySelector("#baseF").value = null;
 
