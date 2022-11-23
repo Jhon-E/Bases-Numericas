@@ -174,7 +174,9 @@ function calcular() {
                 break;
             case "-":
                 resultado_base10 = num1_base10 - num2_base10;
-                (num1_base10 < num2_base10)?alert("Por favor que el primer número sea mayor que el segundo"):(resultado_base10 > 0)?resultado = de10ACualquierBase(resultado_base10,base):resultado = 0;
+                if (num1_base10 < num2_base10) {
+                    alert("Por favor, que el primer número sea mayor que el segundo.")(resultado_base10 > 0)?resultado = de10ACualquierBase(resultado_base10,base):resultado = 0;
+                }
                 break;
             case "x":
                 resultado_base10 = num1_base10 * num2_base10;
